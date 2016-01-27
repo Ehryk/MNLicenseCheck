@@ -1,0 +1,22 @@
+{
+  "name"         : "mn-license-check",
+  "version"      : "1.0.0",
+  "description"  : "Check MN Driver's License Status",
+  "main"         : "LicenseCheck.js",
+  
+  "author"       : "Ehryk",
+  "license"      : "BSD-3-Clause",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/Ehryk/MNLicenseCheck"
+  },
+
+  "dependencies" : {
+    "request"           : "latest",
+    "cheerio"           : "latest",
+    "nodemailer"        : "latest",
+    "http-status-codes" : "latest",
+    "config.json"       : "latest",
+    "phantomjs"       : "latest"
+  }
+}
