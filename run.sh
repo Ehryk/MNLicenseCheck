@@ -1,0 +1,1 @@
+node LicenseCheck.js --verbose=true
