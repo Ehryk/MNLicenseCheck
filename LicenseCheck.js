@@ -192,7 +192,7 @@ function formatDate(date) {
   var ampm = date.getHours() >= 12 ? "PM" : "AM";
   var hours = date.getHours() % 12;
   if (hours == 0) hours = 12;
-  return "{0}.{1}.{2} {3}:{4} {5}".format(date.getFullYear(), pad(date.getMonth(), 2), pad(date.getDate(), 2), hours, pad(date.getMinutes(), 2), ampm);
+  return "{0}.{1}.{2} {3}:{4} {5}".format(date.getFullYear(), pad(date.getMonth() + 1, 2), pad(date.getDate(), 2), hours, pad(date.getMinutes(), 2), ampm);
 }
 
 function getTimezoneAbbreviation(date) {
