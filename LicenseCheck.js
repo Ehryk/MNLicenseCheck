@@ -104,17 +104,17 @@ function check(name, email, license, callback) {
         console.log(); 
         console.log(" --------  END  ---------");
       }
-      if (result.status != "VALID" && mailEnabled == true && recipients && (results.length > 0 || errors.length > 0)) {
+      if (mailEnabled == true && result.email && (result.status != valid_text || errors.length > 0)) {
         console.log();
 
-        if (results.length > 0)
+        if (result.status != valid_text)
           console.log("Invalid license found, sending mail...");
         else 
           console.log("Errors present, sending mail...");
 
         smtp.sendMail({
           to: email,
-          subject: 'LicenseCheck Warning - License status invalid!{0}'.format(errors.length > 0 ? " --- {0} error{1} present!".format(errors.length, errors.length>1 ? "s" : "") : ""),
+          subject: 'LicenseCheck Warning - License status {0}!{1}'.format(result.status, errors.length > 0 ? " --- {0} error{1} present!".format(errors.length, errors.length>1 ? "s" : "") : ""),
           //text: formatEmail(result, errors) // Plain Text
           html: formatEmail(result, errors, true) //HTML
           }, function(error, response) {
