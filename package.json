@@ -16,7 +16,6 @@
     "cheerio"           : "latest",
     "nodemailer"        : "latest",
     "http-status-codes" : "latest",
-    "config.json"       : "latest",
-    "phantomjs"       : "latest"
+    "config.json"       : "latest"
   }
 }
