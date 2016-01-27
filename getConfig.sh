@@ -1,0 +1,1 @@
+wget http://ehryk.com/Private/config.json
