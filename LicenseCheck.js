@@ -104,13 +104,12 @@ function check(name, email, license, callback) {
         console.log(); 
         console.log(" --------  END  ---------");
       }
-      if (mailEnabled == true && result.email && (result.status != valid_text || errors.length > 0)) {
-        console.log();
 
+      if (mailEnabled == true && result.email && (result.status != valid_text || errors.length > 0)) {
         if (result.status != valid_text)
-          console.log("Invalid license found, sending mail...");
+          process.stdout.write("Invalid license found, sending mail... ");
         else 
-          console.log("Errors present, sending mail...");
+          process.stdout.write("Errors present, sending mail... ");
 
         smtp.sendMail({
           to: email,
@@ -121,7 +120,7 @@ function check(name, email, license, callback) {
           if (error) {
             console.log("Error Sending Mail: " + error);
           } else {
-            console.log("Email(s) Sent to: {0}.".format(email));
+            console.log("Email Sent to: {0}.".format(email));
           }
         });
       }
@@ -135,8 +134,12 @@ function finished() {
   console.log();
 
   if (errors.length > 0) {
-    console.log(" === Errors Present! ===");
+    console.log(" --- Errors Present! ---");
+    console.log();
   }
+
+  console.log(" === {0} License Checks Finished === ".format(licenses.length);
+  console.log();
 
   updateLastRun();
 }

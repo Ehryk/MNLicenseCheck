@@ -1,7 +1,7 @@
-MNLicenceCheck v1.0
+MNLicenceCheck v1.1
 ===================
 
-Checks a MN driver's license number and sends an email if the status is not "VALID".
+Checks a MN driver's licenses number and sends the owner an email if the status is not "VALID".
 
 Usage:
 ---
@@ -10,6 +10,7 @@ Usage:
 
 Release History:
 ---
+ - v1.1 2016.01.27 Small fixes and improvements, added sample config
  - v1.0 2016.01.26 Initial Release
 
 Author:
@@ -29,7 +30,7 @@ Contact:
 ---
 Eric Menze
  - [Email Me](mailto:rhaistlin+gh@gmail.com)
- - [www.ericmenze.com](http://ericmenze.com)
+ - [Portfolio](http://ericmenze.com)
  - [Github](https://github.com/Ehryk)
  - [Twitter](https://twitter.com/Ehryk42)
  - [Source Code](https://github.com/Ehryk/AmmoCheck)

@@ -1,0 +1,18 @@
+{
+	"from": "LicenseCheck <licensecheck@host.com>",
+	"mailEnabled": true,
+	"verbose": false,
+	"delay": 500,
+	"smtp": {
+		"host": "host.com",
+		"port": 25,
+		"secure": false,
+		"user": "licensecheck@host.com",
+		"password": "password"
+	},
+	"dmv_site": "https://mndriveinfo.org/dvsinfo/dv02/DV02.asp?Number={0}",
+	"valid_text": "VALID",
+	"licenses": [
+		{ "name": "First Middle Last", "email": "First Last <email@email.com>", "license": "DLNUMBER" }
+	]
+}
