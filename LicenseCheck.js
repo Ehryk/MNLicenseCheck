@@ -138,7 +138,7 @@ function finished() {
     console.log();
   }
 
-  console.log(" === {0} License Checks Finished === ".format(licenses.length);
+  console.log(" === {0} License Checks Finished === ".format(licenses.length));
   console.log();
 
   updateLastRun();
