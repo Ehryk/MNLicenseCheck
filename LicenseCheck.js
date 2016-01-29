@@ -90,12 +90,18 @@ function check(name, email, license, callback) {
         expireDate: $("td").eq(9).text().trim(), 
       }
 
+      var expireDate = new Date(result.expireDate);
+      result.timeToExpiration = expireDate.getTime() - new Date().getTime();
+      result.daysToExpiration = Math.ceil(result.timeToExpiration / (1000 * 3600 * 24));
+
+      var sendForExpiration = [60,30,15,7,3,2,1,0,-1].indexOf(result.daysToExpiration) >= 0;
+
       if (verbose)
         console.log(result);
       else
         console.log("{0}: {1} {2}{3} ({4}) {5}-{6}".format(result.license, result.status, result.class, result.type, result.endorsements, result.issueDate, result.expireDate));
  
-      //Send Email???  
+      //Send Email???
       if (verbose) {
         console.log();
         console.log(" -------- EMAIL ---------");
@@ -105,9 +111,9 @@ function check(name, email, license, callback) {
         console.log(" --------  END  ---------");
       }
 
-      if (mailEnabled == true && result.email && (result.status != valid_text || errors.length > 0)) {
-        if (result.status != valid_text)
-          process.stdout.write("Invalid license found, sending mail... ");
+      if (mailEnabled == true && result.email && (result.status != valid_text || sendForExpiration || errors.length > 0)) {
+        if (errors.length == 0)
+          process.stdout.write("Invalid or expiring license found, sending mail... ");
         else 
           process.stdout.write("Errors present, sending mail... ");
 
@@ -251,7 +257,18 @@ function formatResult(result, html) {
   s += (html == true ? "<b>{0}</b> {1}: <b>{2}</b> {3}{4} ({5}) {6} - {7} <i>(Restrictions: {8})</i>" : "{0} {1}: {2} {3}{4} ({5}) {6} - {7} (Restrictions: {8})").format(result.name, result.license, result.status, result.class, result.type, result.endorsements, result.issueDate, result.expireDate, result.restrictions);
   s += newline;
   s += newline;
-
+  if (result.daysToExpiration > 1)
+    s += (html == true ? "<i>Your License expires in {0} days.</i>" : "Your License expires in {0} days.").format(result.daysToExpiration);
+  if (result.daysToExpiration == 1)
+    s += (html == true ? "<b>Your License expires tomorrow!!!</b>" : "Your License expires tomorrow!!!");
+  else if (result.daysToExpiration == 0)
+    s += (html == true ? "<b>Your License expires today!!!</b>" : "Your License expires today!!!");
+  else if (result.daysToExpiration == -1)
+    s += (html == true ? "<b>Your License has expired yesterday.</b>" : "Your License has expired yesterday.");
+  else if (result.daysToExpiration < 0)
+    s += (html == true ? "<b>Your License has expired {0} days ago.</b>" : "Your License has expired {0} days ago.").format(-result.daysToExpiration);
+  s += newline;
+  s += newline;
   if (html == true)
     s += '<a href="{0}" title="Click here to recheck">{0}</a>'.format(result.url);
   else
