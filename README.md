@@ -1,7 +1,7 @@
-MNLicenceCheck v1.1
+MNLicenceCheck v1.2
 ===================
 
-Checks a MN driver's licenses number and sends the owner an email if the status is not "VALID".
+Checks MN driver's license numbers and sends the owner an email if the status is not "VALID" or if it is expiring soon.
 
 Usage:
 ---
@@ -10,6 +10,7 @@ Usage:
 
 Release History:
 ---
+ - v1.2 2016.01.29 Added check for days until expiration
  - v1.1 2016.01.27 Small fixes and improvements, added sample config
  - v1.0 2016.01.26 Initial Release
 
